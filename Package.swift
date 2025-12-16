@@ -5,6 +5,11 @@ import PackageDescription
 
 let package = Package(
     name: "OPML",
+    platforms: [
+        .iOS(.v14),
+        .macOS(.v11),
+        .tvOS(.v14)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
@@ -20,7 +25,11 @@ let package = Package(
         ),
         .testTarget(
             name: "OPMLTests",
-            dependencies: ["OPML"]
+            dependencies: ["OPML"],
+            resources: [
+                .copy("Resources/rsparser.opml"),
+                .copy("Resources/feedly.opml")
+            ]
         ),
     ]
 )
