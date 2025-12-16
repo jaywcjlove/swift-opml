@@ -49,6 +49,24 @@ Welcome to download [DevTutor](https://apps.apple.com/app/devtutor/id6471227008)
   </a>
 </p>
 
+## Installation
+
+### Swift Package Manager
+
+Add CodeMirror to your project using Xcode:
+
+1. In Xcode, go to `File` → `Add Package Dependencies...`
+2. Enter the repository URL: `https://github.com/jaywcjlove/swiftui-opml.git`
+3. Click `Add Package`
+
+Or add it to your `Package.swift` file:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/jaywcjlove/swiftui-opml.git", from: "1.0.0")
+]
+```
+
 ## Usage
 
 ### Parsing OPML Files
