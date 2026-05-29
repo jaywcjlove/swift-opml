@@ -115,7 +115,7 @@ public class OPMLParser: NSObject, XMLParserDelegate {
     }
     
     public func parser(_ parser: XMLParser, foundCharacters string: String) {
-        currentCharacters += string.trimmingCharacters(in: .whitespacesAndNewlines)
+        currentCharacters += string
     }
     
     public func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
@@ -136,19 +136,22 @@ public class OPMLParser: NSObject, XMLParserDelegate {
                 outlines: outlines
             )
         case "title":
-            title = currentCharacters.isEmpty ? nil : currentCharacters
+            let value = currentCharacters.trimmingCharacters(in: .whitespacesAndNewlines)
+            title = value.isEmpty ? nil : value
         case "dateCreated":
-            dateCreated = Self.dateFormatter.date(from: currentCharacters)
+            dateCreated = Self.dateFormatter.date(from: currentCharacters.trimmingCharacters(in: .whitespacesAndNewlines))
         case "dateModified":
-            dateModified = Self.dateFormatter.date(from: currentCharacters)
+            dateModified = Self.dateFormatter.date(from: currentCharacters.trimmingCharacters(in: .whitespacesAndNewlines))
         case "ownerName":
-            ownerName = currentCharacters.isEmpty ? nil : currentCharacters
+            let value = currentCharacters.trimmingCharacters(in: .whitespacesAndNewlines)
+            ownerName = value.isEmpty ? nil : value
         case "ownerEmail":
-            ownerEmail = currentCharacters.isEmpty ? nil : currentCharacters
+            let value = currentCharacters.trimmingCharacters(in: .whitespacesAndNewlines)
+            ownerEmail = value.isEmpty ? nil : value
         case "ownerId":
-            ownerID = URL(string: currentCharacters)
+            ownerID = URL(string: currentCharacters.trimmingCharacters(in: .whitespacesAndNewlines))
         case "docs":
-            docs = URL(string: currentCharacters)
+            docs = URL(string: currentCharacters.trimmingCharacters(in: .whitespacesAndNewlines))
         case "outline":
             // Handle nested outlines
             if outlineStack.count > 1 {
